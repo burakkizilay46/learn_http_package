@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:learn_http_lib/models/PostModel.dart';
 import 'dart:async';
+import 'package:learn_http_lib/models/album_model.dart';
 
 Future<Album> fetchAlbum() async {
   final response =
@@ -41,11 +41,12 @@ class _HttpPageState extends State<HttpPage> {
         title: Text("HTTP PACKAGE"),
       ),
       body: Center(
-        child: FutureBuilder(
+        child: FutureBuilder<Album>( //Hata Çözüldü. FutureBuilder içerisinde <Album> tanımlamamız lazım...
             future: futureAlbum,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text(snapshot.data!.title); // title kısmında hata veriyor..
+                return Text(
+                    snapshot.data!.title); // title kısmında hata veriyor..
               } else if (snapshot.hasError) {
                 return Text("${snapshot.error}");
               }
