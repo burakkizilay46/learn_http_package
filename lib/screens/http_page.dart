@@ -38,15 +38,22 @@ class _HttpPageState extends State<HttpPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("HTTP PACKAGE"),
+        title: Text("HTTP 1 Data Page"),
       ),
       body: Center(
-        child: FutureBuilder<Album>( //Hata Çözüldü. FutureBuilder içerisinde <Album> tanımlamamız lazım...
+        child: FutureBuilder<Album>(
             future: futureAlbum,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text(
-                    snapshot.data!.title); // title kısmında hata veriyor..
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                        snapshot.data!.title),
+                        Text(
+                        snapshot.data!.id.toString()),
+                  ],
+                ); 
               } else if (snapshot.hasError) {
                 return Text("${snapshot.error}");
               }
