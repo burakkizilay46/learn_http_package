@@ -7,9 +7,9 @@ class Album {
 
   factory Album.fromJson(Map<String, dynamic> json) {
     return Album(
-      userId: json['userId'],
-      id: json['id'],
-      title: json['title'],
+      userId: json['userId'] as int,
+      id: json['id'] as int,
+      title: json['title'] as String,
     );
   }
 }
